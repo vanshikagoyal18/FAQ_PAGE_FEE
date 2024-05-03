@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="font-sans bg-center bg-cover" style="background-image: url('https://th.bing.com/th?id=OIP.q-K1Dljdyo5-lERKBT0YwAHaEc&w=322&h=193&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2');">
+<div class="container mx-auto ">
+    <div id="faq-section" class="  max-w-4xl mt-2 px-2s py-20 rounded shadow-3g">
+        <h1 class="text-6xl font-bold px-4 font-serif text-grey-900 mb-10">Frequently Asked Questions</h1>
+        <div class="search-container flex  mb-10 ml-6">
+            <input type="text" placeholder="Search..." id="search-box" class="flex-1 px-4 py-2 rounded border border-gray-400">
+        </div>
+        <div class="space-y-4">
+            <div class="faq-item bg-gray-200 p-4 rounded cursor-pointer" id="faq1">
+                <h2 class="toggle flex justify-between items-center text-xl font-bold text-gray-700">
+                    What is JavaScript?
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 arrow rotated" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </h2>
+                <p class="hidden">JavaScript is the most powerful and versatile programming language used in the web</p>
+            </div>
+            <div class="faq-item bg-gray-200 p-4 rounded cursor-pointer" id="faq2">
+                <h2 class="toggle flex justify-between items-center text-xl font-bold text-gray-700">
+                    Why to learn JavaScript?
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 arrow rotated" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </h2> <!-- scalable vector graphic> used to display an arrow icon-->
+                <p class="hidden">JavaScript is an essential programming language for web developers to learn as it grows rapidly. </p>
+            </div>
+            <div class="faq-item bg-gray-200 p-4 rounded cursor-pointer" id="faq3">
+                <h2 class="toggle flex justify-between items-center text-xl font-bold text-gray-700">
+                    Who developed JavaScript?
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </h2>
+                <p class="hidden">Brendan Eich first developed JavaScript</p>
+            </div>
+            <div class="faq-item bg-gray-200 p-4 rounded cursor-pointer" id="faq4">
+                <h2 class="toggle flex justify-between items-center text-xl font-bold text-gray-700">
+                    How does it work?
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </h2>
+                <p class="hidden">It works seamlessly alongside HTML and CSS .</p>
+            </div>
+            <div class="faq-item bg-gray-200 p-4 rounded cursor-pointer" id="faq5">
+                <h2 class="toggle flex justify-between items-center text-xl font-bold text-gray-700">
+                    What can JavaScript Do?
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </h2>
+                <p class="hidden">JavaScript Can Change HTML Content, HTML Attribute Values and HTML Styles (CSS)</p>
+            </div>
+            <div class="faq-item bg-gray-200 p-4 rounded cursor-pointer" id="faq6">
+                <h2 class="toggle flex justify-between items-center text-xl font-bold text-gray-700">
+                    Where can I download JavaScript?
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 arrow" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </h2>
+                <p class="hidden">JavaScript is already running in your browser on your computer, on your tablet, and on your smart-phone.</p>
+            </div>
+        </div>
+            
+        </div>
+        <p class="not-found hidden text-4xl text-white mt-10">No results found.</p>
+    </div>
+</div>
+<script>
+    const toggleElements = document.querySelectorAll('.toggle');
+
+    toggleElements.forEach((toggleElement) => {
+        toggleElement.addEventListener('click', () => {
+            const answer = toggleElement.nextElementSibling;
+            const arrow = toggleElement.querySelector('.arrow');
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                arrow.classList.add('rotated');
+            } else {
+                answer.classList.add('hidden');
+                arrow.classList.remove('rotated');
+            }
+        });
+    });
+
+    document.getElementById('search-box').addEventListener('input', function() {
+        const searchTerm = this.value.trim().toLowerCase();
+        const faqItems = document.querySelectorAll('.faq-item');
+        const notFoundMessage = document.querySelector('.not-found');
+
+        let found = false;
+
+        faqItems.forEach((faqItem) => {
+            const question = faqItem.querySelector('h2').textContent.trim().toLowerCase();
+            const answer = faqItem.querySelector('p').textContent.trim().toLowerCase();
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                faqItem.classList.remove('hidden');
+                found = true;
+            } else {
+                faqItem.classList.add('hidden');
+            }
+        });
+
+        if (found) {
+            notFoundMessage.classList.add('hidden');
+        } else {
+            notFoundMessage.classList.remove('hidden');
+        }
+    });
+</script>
+</body>
+</html>
